@@ -4,7 +4,7 @@ const links = [
   { href: "/", text: "Home" },
   { href: "/books", text: "All Books"},
   { href: "/books/categories", text: "Category"},
-  { href: "/new", text: "Add Book"}
+  { href: "books/new", text: "Add Book"}
 ];
 
 indexRouter.get("/", (req,res)=>{

@@ -6,13 +6,16 @@ const links = [
 ];
 
 const { body, validationResult } = require("express-validator");
+const db = require("../Models/queries")
 
 const validateItem = [
     // add validation here
 ]
 
-exports.itemListGet = (req,res)=>{
+exports.itemListGet = async (req,res)=>{
     console.log("fetch data from DB")
+    const fullData = await db.getAllData();
+    console.llg(fullData)
     res.render("fullList", {message: "all books displayed here",links: links})
 }
 
@@ -32,8 +35,10 @@ exports.itemCreatePost = [
     validateItem,
     // check errors 
 
-    (req,res)=>{
-        console.log("write date into DB")
+    async (req,res)=>{
+        const { data } = req.body;
+        console.log("write date into DB");
+        await db.insertData(data);
         res.redirect("/books")
     }
 ]   
